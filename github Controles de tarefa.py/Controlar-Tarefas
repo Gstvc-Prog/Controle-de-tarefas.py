@@ -1,0 +1,54 @@
+tarefas = []
+
+def mostrar_menu():
+    print("\n--- MENU ---")
+    print("1 - Adicionar tarefa")
+    print("2 - Listar tarefas")
+    print("3 - Concluir tarefa")
+    print("4 - Remover tarefa")
+    print("0 - Sair")
+
+def adicionar_tarefa():
+    tarefa = input("Digite a tarefa: ")
+    tarefas.append({"nome": tarefa, "concluida": False})
+    print("Tarefa adicionada!")
+
+def listar_tarefas():
+    if not tarefas:
+        print("Nenhuma tarefa cadastrada.")
+        return
+    
+    for i, t in enumerate(tarefas):
+        status = "✔" if t["concluida"] else "✖"
+        print(f"{i} - {t['nome']} [{status}]")
+
+def concluir_tarefa():
+    listar_tarefas()
+    i = int(input("Número da tarefa: "))
+    tarefas[i]["concluida"] = True
+    print("Tarefa concluída!")
+
+def remover_tarefa():
+    listar_tarefas()
+    i = int(input("Número da tarefa: "))
+    tarefas.pop(i)
+    print("Tarefa removida!")
+
+while True:
+    mostrar_menu()
+    opcao = input("Escolha: ")
+    
+    if opcao == "1":
+        adicionar_tarefa()
+    elif opcao == "2":
+        listar_tarefas()
+    elif opcao == "3":
+        concluir_tarefa()
+    elif opcao == "4":
+        remover_tarefa()
+    elif opcao == "0":
+        print("Saindo...")
+        break
+    else:
+        print("Opção inválida!")
+        
